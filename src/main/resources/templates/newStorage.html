@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Новое место хранения</title>
+</head>
+<body>
+<h2>Новое место хранения</h2>
+<form method="POST" action="/Storage/put" th:object="${storage}">
+    <div>
+        <h4>Этаж</h4>
+        <select th:field="*{floor}" id="organizationsSelect">
+            <option th:each="floor : ${floors}" th:value="${floor}"
+                    th:text="${floor.toString()}"></option>
+        </select>
+    </div>
+        <h4>Кабинет</h4>
+        <input type="text" th:field="*{cabinet}">
+    </div>
+    <div>
+
+        <input type="submit" value="Создать"/>
+    </div>
+</form>
+</body>
+</html>

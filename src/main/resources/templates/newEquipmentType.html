@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Новый тип оборудования</title>
+</head>
+<body>
+<h2>Новый тип оборудования</h2>
+<form method="POST" action="/EquipmentType/put" th:object="${equipmentType}">
+    <div>
+        <h4>тип</h4>
+        <input type="text" th:field="*{name}">
+    </div>
+
+
+    <div>
+
+        <input type="submit" value="Создать"/>
+    </div>
+</form>
+</body>
+</html>

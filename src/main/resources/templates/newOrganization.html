@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Новая организация</title>
+</head>
+<body>
+<h2>Новая организация</h2>
+<form method="POST" action="/Organization/put" th:object="${organization}">
+    <div>
+        <h4>Наименование организации</h4>
+        <input type="text" th:field="*{name}">
+    </div>
+    <div>
+        <h4>Абривеатура</h4>
+        <input type="text" th:field="*{abbreviation}">
+    </div>
+    <div>
+        <h4>Адрес</h4>
+        <input type="text" th:field="*{address}">
+    </div>
+    <div>
+
+        <input type="submit" value="Создать"/>
+    </div>
+</form>
+</body>
+</html>

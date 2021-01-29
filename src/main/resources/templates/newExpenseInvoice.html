@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Новая расходная накладная</title>
+</head>
+<body>
+<h2>Новая расходная накладная</h2>
+<form method="POST" action="/ExpenseInvoice/save" th:object="${expenseInvoice}">
+    <div>
+        <input type="text" th:field="*{id}">
+    </div>
+    <div>
+        <h4>Организация</h4>
+        <select th:field="*{organization}">
+            <option th:each="organizationN : ${organizations}" th:value="${organizationN.getId()}"
+                    th:text="${organizationN.toString()}"></option>
+        </select>
+    </div>
+    <div>
+        <h4>Оборудование</h4>
+        <table >
+            <tr th:each="equipment, itemStat : *{equipmentList}">
+                <td><select th:field="*{equipmentList[__${itemStat.index}__]}">
+                    <option th:each="equipmentN : ${allEquipment}" th:value="${equipmentN.id}"
+                            th:text="${equipmentN.toStringRu()}"></option>
+                </select></td>
+            </tr>
+        </table>
+
+        <input type="submit" formaction="/ExpenseInvoice/addEquipment" value="добавить"/>
+    </div>
+
+
+    <div>
+
+        <input type="submit" value="Создать"/>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Приходование товара</title>
+</head>
+<body>
+<h2>Приходование товара</h2>
+<form method="POST" action="save" th:object="${receiptInvoice}">
+    <div>
+        <input type="text" th:field="*{id}">
+    </div>
+    <div>
+        <h4>Поставщик</h4>
+        <select th:field="*{provider}">
+            <option th:each="organization : ${organizations}" th:value="${organization.getId()}"
+                    th:text="${organization.toString()}"></option>
+        </select>
+    </div>
+    <div>
+        <h4>Оборудование</h4>
+        <table th:field="*{equipmentList}">
+            <tr>
+                <td><h6> name </h6></td>
+                <td><h6> inventoryNumber </h6></td>
+                <td><h6> serialNumber </h6></td>
+                <td><h6> storage </h6></td>
+                <td><h6> type </h6></td>
+            </tr>
+            <tr th:each="equipment, itemStat : *{equipmentList}">
+                <td><input type="text" th:field="*{equipmentList[__${itemStat.index}__].name}"></td>
+                <td><input type="text" th:field="*{equipmentList[__${itemStat.index}__].inventoryNumber}"></td>
+                <td><input type="text" th:field="*{equipmentList[__${itemStat.index}__].serialNumber}"></td>
+                <td><select th:field="*{equipmentList[__${itemStat.index}__].storage}">
+                    <option th:each="storage : ${storages}" th:value="${storage.id}"
+                            th:text="${storage.toStringRu()}"></option>
+                </select></td>
+                <td><select th:field="*{equipmentList[__${itemStat.index}__].type}">
+                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.name}"
+                            th:text="${equipmentType.toString()}"></option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>
+                    <input formaction="addEquipment" type="submit" value="Добавить оборудование"/>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+
+
+    <div>
+        <input type="submit" value="Submit order"/>
+
+        <input th:formmethod="GET" th:formaction="${'/ReceiptInvoice/print'}" type="submit" value="печать"/>
+    </div>
+</form>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Новый этаж</title>
+</head>
+<body>
+<h2>Новый этаж</h2>
+<form method="POST" action="/Floor/put" th:object="${floor}">
+    <div>
+        <h4>этаж</h4>
+        <input type="text" th:field="*{floor}">
+    </div>
+
+
+    <div>
+
+        <input type="submit" value="Создать"/>
+    </div>
+</form>
+</body>
+</html>
