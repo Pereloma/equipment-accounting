@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Инвентаризация</title>
+</head>
+<body>
+<h2>Инвентаризация</h2>
+<form method="POST" action="/Inventory" th:object="${inventory}">
+    <div>
+        <h4>Тип оборудования</h4>
+        <select th:field="*{equipmentType}">
+            <option value="null">Все</option>
+            <option th:each="equipmentType : ${equipmentTypeList}" th:value="${equipmentType.getName()}"
+                    th:text="${equipmentType.toString()}"></option>
+        </select>
+        <div>
+            <input type="submit" formaction="/ExpenseInvoice/addEquipment" value="сформировать"/>
+        </div>
+    </div>
+    <div>
+        <h4>Оборудование</h4>
+        <table>
+            <tr th:each="equipment, itemStat : ${stockEquipmentList}">
+                <td>
+                    <p>[[${equipment.getType().toString()+' '+equipment.getName()+'
+                        '+equipment.getStorage().toStringRu()}]]<br>
+                        SN:[[${equipment.getSerialNumber().toString()}]]
+                        IN:[[${equipment.getInventoryNumber().toString()}]]
+                    </p>
+                </td>
+                <td>
+                    <input type="checkbox"
+                           th:checked="not ${#lists.contains(inventory.getNotFoundEquipment(), equipment.getId())}"
+                           th:field="*{notFoundEquipment[__${itemStat.index}__]}"
+                           th:value="${stockEquipmentList[__${itemStat.index}__].id}">
+
+
+                </td>
+        </table>
+
+    </div>
+
+
+    <div>
+
+        <input type="submit" value="Создать"/>
+    </div>
+</form>
+</body>
+</html>
