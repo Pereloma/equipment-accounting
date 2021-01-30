@@ -53,7 +53,7 @@ public class ExpenseInvoiceController {
         if(errors.hasErrors())
             return "redirect:/ExpenseInvoice/edit";
         for (Equipment equipment : expenseInvoice.getEquipmentList()){
-            equipment.setPresent(false);
+
             equipmentRepository.save(equipment);
         }
         expenseInvoiceRepository.save(expenseInvoice);

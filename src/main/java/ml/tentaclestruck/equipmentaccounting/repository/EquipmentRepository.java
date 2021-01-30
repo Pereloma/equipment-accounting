@@ -6,4 +6,5 @@ import org.springframework.data.jpa.repository.support.JpaRepositoryImplementati
 import java.util.List;
 
 public interface EquipmentRepository extends JpaRepositoryImplementation<Equipment, Long> {
+    Equipment findFirstById (Long id);
 }

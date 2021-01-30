@@ -30,9 +30,6 @@ public class Equipment {
     @ManyToOne()
     private EquipmentType type;
 
-    @Column(nullable = false)
-    private Boolean present;
-
     public String toStringRu(){
         StringBuilder stringBuilder = new StringBuilder();
         if(type != null) {
