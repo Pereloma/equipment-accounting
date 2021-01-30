@@ -30,24 +30,27 @@ public class InventoryController {
 
     @GetMapping
     public String newInventory(@AuthenticationPrincipal User user, Model model){
+        model.addAttribute("equipmentTypes",equipmentTypeRepository.findAll());
         Inventory inventory = new Inventory();
-        inventory.setNotFoundEquipment(equipmentService.getStockEquipment(inventory.getDate()));
         inventory.setUser(user);
         model.addAttribute("inventory",inventory);
-        model.addAttribute("equipmentTypeList",equipmentTypeRepository.findAll());
-        model.addAttribute("stockEquipmentList",equipmentService.getStockEquipment(inventory.getDate()));
+
+        model.addAttribute("stockEquipments",equipmentService.getStockEquipment(inventory.getDate()));
         return "inventory";
     }
     @PostMapping
     public String newInventory(Inventory inventory, Model model){
-        inventory.getNotFoundEquipment().removeIf(equipment -> {
-            if (equipment == null) return true;
-            return equipment.getId() == null;});
+        inventory.getFoundEquipment().removeIf(equipment -> {
+            if(equipment == null) return true;
+            else return equipment.getId()==null; });
+        List<Equipment> stockEquipments = equipmentService.getStockEquipment(inventory.getDate());
+        stockEquipments.removeAll(inventory.getNotFoundEquipment());
 
+        inventoryRepository.save(inventory);
+
+        model.addAttribute("equipmentTypes",equipmentTypeRepository.findAll());
         model.addAttribute("inventory",inventory);
-        model.addAttribute("equipmentTypeList",equipmentTypeRepository.findAll());
-
-        model.addAttribute("stockEquipmentList",equipmentService.getStockEquipment(inventory.getDate()));
+        model.addAttribute("stockEquipments",stockEquipments);
         return "inventory";
     }
 }

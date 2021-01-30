@@ -19,8 +19,14 @@ public class Inventory {
     private EquipmentType equipmentType;
 
     @OneToMany(fetch = FetchType.EAGER)
+    @JoinColumn(name = "found_equipment")
+    private List<Equipment> foundEquipment;
+
+    @OneToMany(fetch = FetchType.EAGER)
     @JoinColumn(name = "not_found_equipment")
     private List<Equipment> notFoundEquipment;
+
+
 
     @ManyToOne()
     User user;
@@ -30,6 +36,7 @@ public class Inventory {
 
     public Inventory() {
         this.date = new Date();
-        this.notFoundEquipment=new ArrayList<>();
+        this.foundEquipment =new ArrayList<>();
+        this.notFoundEquipment =new ArrayList<>();
     }
 }
