@@ -6,9 +6,13 @@
     <meta charset="utf-8">
     <title>Инвентаризация</title>
 </head>
+<header>
+    <div th:replace="header"></div>
+</header>
+
 <body>
 <h2>Инвентаризация</h2>
-<form method="POST" action="/Inventory" th:object="${inventory}">
+<form method="POST" action="/Inventory/save" th:object="${inventory}">
     <div>
         <h4>Тип оборудования</h4>
         <select th:field="*{equipmentType}">
@@ -17,7 +21,7 @@
                     th:text="${equipmentType.toString()}"></option>
         </select>
         <div>
-            <input type="submit" formaction="/ExpenseInvoice/addEquipment" value="сформировать"/>
+            <input type="submit" formaction="/Inventory" value="сформировать"/>
         </div>
     </div>
     <div>

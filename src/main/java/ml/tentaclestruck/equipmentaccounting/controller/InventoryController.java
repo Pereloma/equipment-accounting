@@ -39,12 +39,38 @@ public class InventoryController {
         return "inventory";
     }
     @PostMapping
-    public String newInventory(Inventory inventory, Model model){
+    public String Inventory(Inventory inventory, Model model){
         inventory.getFoundEquipment().removeIf(equipment -> {
             if(equipment == null) return true;
             else return equipment.getId()==null; });
-        List<Equipment> stockEquipments = equipmentService.getStockEquipment(inventory.getDate());
-        stockEquipments.removeAll(inventory.getNotFoundEquipment());
+
+        List<Equipment> stockEquipments;
+        if(inventory.getEquipmentType()==null)
+            stockEquipments = equipmentService.getStockEquipment(inventory.getDate());
+        else
+            stockEquipments = equipmentService.getStockEquipment(inventory.getDate(),inventory.getEquipmentType());
+        stockEquipments.removeAll(inventory.getFoundEquipment());
+        inventory.setNotFoundEquipment(stockEquipments);
+
+        model.addAttribute("equipmentTypes",equipmentTypeRepository.findAll());
+        model.addAttribute("inventory",inventory);
+        model.addAttribute("stockEquipments",stockEquipments);
+        return "inventory";
+    }
+
+    @PostMapping("/save")
+    public String saveInventory(Inventory inventory, Model model){
+        inventory.getFoundEquipment().removeIf(equipment -> {
+            if(equipment == null) return true;
+            else return equipment.getId()==null; });
+
+        List<Equipment> stockEquipments;
+        if(inventory.getEquipmentType()==null)
+            stockEquipments = equipmentService.getStockEquipment(inventory.getDate());
+        else
+            stockEquipments = equipmentService.getStockEquipment(inventory.getDate(),inventory.getEquipmentType());
+        stockEquipments.removeAll(inventory.getFoundEquipment());
+        inventory.setNotFoundEquipment(stockEquipments);
 
         inventoryRepository.save(inventory);
 

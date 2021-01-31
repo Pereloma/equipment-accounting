@@ -18,11 +18,11 @@ public class Inventory {
     @ManyToOne()
     private EquipmentType equipmentType;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany()
     @JoinColumn(name = "found_equipment")
     private List<Equipment> foundEquipment;
 
-    @OneToMany(fetch = FetchType.EAGER)
+    @OneToMany()
     @JoinColumn(name = "not_found_equipment")
     private List<Equipment> notFoundEquipment;
 

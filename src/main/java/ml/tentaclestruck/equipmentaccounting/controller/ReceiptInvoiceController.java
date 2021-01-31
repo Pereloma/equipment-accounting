@@ -88,12 +88,18 @@ public class ReceiptInvoiceController {
 
     @GetMapping("/print")
     public String printReceiptInvoice(@RequestParam Long id, Model model){
-        model.addAttribute("receiptInvoice",receiptInvoiceRepository.findFirstById(id));
-        model.addAttribute("organizations",organizationRepository.findAll());
-        model.addAttribute("storages",storageRepository.findAll());
-        model.addAttribute("equipmentTypes",equipmentTypeRepository.findAll());
+        if (id != null) {
+            ReceiptInvoice receiptInvoice = receiptInvoiceRepository.findFirstById(id);
+            if(receiptInvoice.getId()!=null) {
+                model.addAttribute("receiptInvoice", receiptInvoice);
+                model.addAttribute("organizations", organizationRepository.findAll());
+                model.addAttribute("storages", storageRepository.findAll());
+                model.addAttribute("equipmentTypes", equipmentTypeRepository.findAll());
 
-        return "printReceiptInvoice";
+                return "printReceiptInvoice";
+            }
+        }
+        return "redirect:/ReceiptInvoice/new";
     }
 
     @GetMapping(value = "/QR/{barcode}", produces = MediaType.IMAGE_PNG_VALUE)

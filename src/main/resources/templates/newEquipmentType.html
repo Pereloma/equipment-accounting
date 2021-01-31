@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <title>Новый тип оборудования</title>
 </head>
+<header>
+    <div th:replace="header"></div>
+</header>
 <body>
 <h2>Новый тип оборудования</h2>
 <form method="POST" action="/EquipmentType/put" th:object="${equipmentType}">

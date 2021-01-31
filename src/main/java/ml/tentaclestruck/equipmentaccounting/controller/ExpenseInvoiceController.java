@@ -4,6 +4,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import ml.tentaclestruck.equipmentaccounting.model.Equipment;
 import ml.tentaclestruck.equipmentaccounting.model.ExpenseInvoice;
 import ml.tentaclestruck.equipmentaccounting.repository.*;
+import ml.tentaclestruck.equipmentaccounting.service.EquipmentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +21,7 @@ public class ExpenseInvoiceController {
     @Autowired
     OrganizationRepository organizationRepository;
     @Autowired
-    EquipmentRepository equipmentRepository;
+    EquipmentService equipmentService;
     @Autowired
     ExpenseInvoiceRepository expenseInvoiceRepository;
     @Autowired
@@ -30,7 +31,7 @@ public class ExpenseInvoiceController {
     public String newExpenseInvoice(Model model) {
         ExpenseInvoice expenseInvoice = new ExpenseInvoice();
         expenseInvoice.getEquipmentList().add(new Equipment());
-        List<Equipment> allEquipment = equipmentRepository.findAll();
+        List<Equipment> allEquipment = equipmentService.getStockEquipment();
 
         model.addAttribute("expenseInvoice",expenseInvoice);
         model.addAttribute("allEquipment",allEquipment);
@@ -41,7 +42,7 @@ public class ExpenseInvoiceController {
     @PostMapping("/addEquipment")
     public String addEquipmentExpenseInvoice(@Valid ExpenseInvoice expenseInvoice, Errors errors, Model model) {
         expenseInvoice.getEquipmentList().add(new Equipment());
-        List<Equipment> allEquipment = equipmentRepository.findAll();
+        List<Equipment> allEquipment = equipmentService.getStockEquipment();
         model.addAttribute("expenseInvoice",expenseInvoice);
         model.addAttribute("allEquipment",allEquipment);
         model.addAttribute("organizations",organizationRepository.findAll());
@@ -54,7 +55,7 @@ public class ExpenseInvoiceController {
             return "redirect:/ExpenseInvoice/edit";
         for (Equipment equipment : expenseInvoice.getEquipmentList()){
 
-            equipmentRepository.save(equipment);
+            equipmentService.saveEquipment(equipment);
         }
         expenseInvoiceRepository.save(expenseInvoice);
         return "redirect:/ExpenseInvoice/edit/"+expenseInvoice.getId();
@@ -62,7 +63,7 @@ public class ExpenseInvoiceController {
 
     @PostMapping("/edit")
     public String editExpenseInvoice(@Valid ExpenseInvoice expenseInvoice, Errors errors, Model model) {
-        List<Equipment> allEquipment = equipmentRepository.findAll();
+        List<Equipment> allEquipment = equipmentService.getStockEquipment();
         model.addAttribute("expenseInvoice",expenseInvoice);
         model.addAttribute("allEquipment",allEquipment);
         model.addAttribute("organizations",organizationRepository.findAll());
@@ -72,7 +73,7 @@ public class ExpenseInvoiceController {
     @GetMapping("/edit/{id}")
     public String editExpenseInvoice(@PathVariable("id") Long id, Model model) {
         ExpenseInvoice expenseInvoice = expenseInvoiceRepository.findFirstById(id);
-        List<Equipment> allEquipment = equipmentRepository.findAll();
+        List<Equipment> allEquipment = equipmentService.getStockEquipment();
         model.addAttribute("expenseInvoice",expenseInvoice);
         model.addAttribute("allEquipment",allEquipment);
         model.addAttribute("organizations",organizationRepository.findAll());

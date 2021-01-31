@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Учет оборудования</title>
+</head>
+<header>
+    <div th:replace="header"></div>
+</header>
+
+<body>
+<h2>[[${equipment.getType()}]] [[${equipment.getName()}]]</h2>
+<h3>SN:[[${equipment.getSerialNumber()}]] IN:[[${equipment.inventoryNumber}]]</h3>
+<div>
+    <div>
+        <h4>прием оборудования</h4>
+        <a th:href="${'/ReceiptInvoice/edit/'+receiptInvoice.getId()}">прием оборудования от [[${receiptInvoice.getProvider()}]]</a>
+    </div>
+    <div>
+        <h4>найден в инвентаризациях</h4>
+        <table>
+            <tr th:each="inventory, itemStat : ${inventoryList}">
+                <td >Инвентаризация от [[${inventory.getDate()}]] Cоздана: [[${inventory?.getUser()}]]</td>
+            </tr>
+        </table>
+    </div>
+
+</div>
+</body>
+</html>

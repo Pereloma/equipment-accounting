@@ -6,6 +6,9 @@
     <meta charset="utf-8">
     <title>Новый этаж</title>
 </head>
+<header>
+    <div th:replace="header"></div>
+</header>
 <body>
 <h2>Новый этаж</h2>
 <form method="POST" action="/Floor/put" th:object="${floor}">

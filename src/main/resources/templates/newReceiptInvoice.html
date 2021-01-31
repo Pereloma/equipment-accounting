@@ -6,6 +6,10 @@
     <meta charset="utf-8">
     <title>Приходование товара</title>
 </head>
+<header>
+    <div th:replace="header"></div>
+</header>
+
 <body>
 <h2>Приходование товара</h2>
 <form method="POST" action="save" th:object="${receiptInvoice}">
