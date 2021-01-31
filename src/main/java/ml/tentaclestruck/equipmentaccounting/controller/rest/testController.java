@@ -72,6 +72,6 @@ public class testController {
         type.setName("Монитор");
         equipmentTypeRepository.save(type);
 
-        return "create";
+        return "create!";
         }
 }
