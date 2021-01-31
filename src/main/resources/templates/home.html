@@ -16,10 +16,8 @@
         <h4>Тип оборудования</h4>
         <table>
             <tr th:each="equipment, itemStat : ${stockEquipment}">
-                <td><a th:href="${'/Equipment/'+equipment.getId()}"> dfdsfsd</a> </td>
-
                 <td>[[${equipment.getType()}]]</td>
-                <td>[[${equipment.getName()}]]</td>
+                <td><a th:href="${'/Equipment/'+equipment.getId()}"> [[${equipment.getName()}]]</a></td>
                 <td>[[${equipment.getInventoryNumber()}]]</td>
                 <td>[[${equipment.getSerialNumber()}]]</td>
                 <td>[[${equipment.getStorage()}]]</td>
