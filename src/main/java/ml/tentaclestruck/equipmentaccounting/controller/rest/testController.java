@@ -4,10 +4,7 @@ import ml.tentaclestruck.equipmentaccounting.model.EquipmentType;
 import ml.tentaclestruck.equipmentaccounting.model.Floor;
 import ml.tentaclestruck.equipmentaccounting.model.Organization;
 import ml.tentaclestruck.equipmentaccounting.model.Storage;
-import ml.tentaclestruck.equipmentaccounting.repository.EquipmentTypeRepository;
-import ml.tentaclestruck.equipmentaccounting.repository.FloorRepository;
-import ml.tentaclestruck.equipmentaccounting.repository.OrganizationRepository;
-import ml.tentaclestruck.equipmentaccounting.repository.StorageRepository;
+import ml.tentaclestruck.equipmentaccounting.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,6 +23,8 @@ public class testController {
     OrganizationRepository organizationRepository;
     @Autowired
     EquipmentTypeRepository equipmentTypeRepository;
+    @Autowired
+    EquipmentRepository equipmentRepository;
 
     @GetMapping("test")
     public String create(){
@@ -74,4 +73,10 @@ public class testController {
 
         return "create!";
         }
+
+    @GetMapping("testt")
+    public String creatfe() {
+        EquipmentType type = equipmentTypeRepository.findFirstByName("ПК");
+    return equipmentRepository.getEquipmentsByType(type).toString();
+    }
 }

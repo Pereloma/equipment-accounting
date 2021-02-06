@@ -5,4 +5,5 @@ import ml.tentaclestruck.equipmentaccounting.model.Floor;
 import org.springframework.data.jpa.repository.support.JpaRepositoryImplementation;
 
 public interface EquipmentTypeRepository extends JpaRepositoryImplementation<EquipmentType, String> {
+    EquipmentType findFirstByName(String name);
 }

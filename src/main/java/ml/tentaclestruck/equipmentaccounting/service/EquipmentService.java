@@ -6,6 +6,7 @@ import ml.tentaclestruck.equipmentaccounting.repository.ExpenseInvoiceRepository
 import ml.tentaclestruck.equipmentaccounting.repository.InventoryRepository;
 import ml.tentaclestruck.equipmentaccounting.repository.ReceiptInvoiceRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -24,17 +25,7 @@ public class EquipmentService {
     InventoryRepository inventoryRepository;
 
     public List<Equipment> getStockEquipment(){
-        List<Equipment> equipmentList = new ArrayList<>();
-        for (ReceiptInvoice receiptInvoice:receiptInvoiceRepository.findAll()){
-            equipmentList.addAll(receiptInvoice.getEquipmentList());
-        }
-        for (ExpenseInvoice expenseInvoice : expenseInvoiceRepository.findAll()){
-            equipmentList.removeAll(expenseInvoice.getEquipmentList());
-        }
-        for (Inventory inventory : inventoryRepository.findAll()){
-            equipmentList.removeAll(inventory.getNotFoundEquipment());
-        }
-        return equipmentList;
+        return equipmentRepository.getEquipmentsInStock();
     }
 
     public List<Equipment> getStockEquipment(Date date){
@@ -52,22 +43,8 @@ public class EquipmentService {
     }
 
     public List<Equipment> getStockEquipment(EquipmentType equipmentType){
-        List<Equipment> equipmentList = new ArrayList<>();
 
-        for (ReceiptInvoice receiptInvoice:receiptInvoiceRepository.findAll()){
-            for(Equipment equipment : receiptInvoice.getEquipmentList()){
-                if (equipment.getType().equals(equipmentType)){
-                    equipmentList.add(equipment);
-                }
-            }
-        }
-        for (ExpenseInvoice expenseInvoice : expenseInvoiceRepository.findAll()){
-            equipmentList.removeAll(expenseInvoice.getEquipmentList());
-        }
-        for (Inventory inventory : inventoryRepository.findAll()){
-            equipmentList.removeAll(inventory.getNotFoundEquipment());
-        }
-        return equipmentList;
+        return equipmentRepository.getEquipmentsByType(equipmentType);
     }
 
     public List<Equipment> getStockEquipment(Date date, EquipmentType equipmentType){
@@ -114,4 +91,6 @@ public class EquipmentService {
     public Equipment saveEquipment(Equipment equipment){
         return equipmentRepository.save(equipment);
     }
+
+
 }

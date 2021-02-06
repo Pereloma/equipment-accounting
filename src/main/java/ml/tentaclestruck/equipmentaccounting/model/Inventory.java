@@ -9,7 +9,6 @@ import java.util.List;
 
 @Data
 @Entity
-@Table(name = "INVENTORY")
 public class Inventory {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -19,17 +18,13 @@ public class Inventory {
     private EquipmentType equipmentType;
 
     @OneToMany()
-    @JoinColumn(name = "found_equipment")
     private List<Equipment> foundEquipment;
 
     @OneToMany()
-    @JoinColumn(name = "not_found_equipment")
     private List<Equipment> notFoundEquipment;
 
-
-
     @ManyToOne()
-    User user;
+    private User user;
 
     private Date date;
 
