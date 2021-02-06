@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //расходная накладная.
@@ -20,6 +21,11 @@ public class ExpenseInvoice {
 
     @ManyToOne
     private Organization organization;
+
+    @ManyToOne()
+    private User user;
+
+    private Date date;
 
     public ExpenseInvoice() {
         this.equipmentList = new ArrayList<>();

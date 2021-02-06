@@ -11,7 +11,7 @@ public interface EquipmentRepository extends JpaRepositoryImplementation<Equipme
     Equipment findFirstById (Long id);
 
     @Query(nativeQuery = true,
-            value = "select * from equipment " +
+            value = "select equipment.* from equipment " +
                     "join receipt_invoice_equipment_list on equipment.id = receipt_invoice_equipment_list.equipment_list_id " +
                     "left join expense_invoice_equipment_list on equipment.id = expense_invoice_equipment_list.equipment_list_id " +
                     "left join inventory_not_found_equipment on equipment.id = inventory_not_found_equipment.inventory_id " +
@@ -20,7 +20,7 @@ public interface EquipmentRepository extends JpaRepositoryImplementation<Equipme
     List<Equipment> getEquipmentsInStock();
 
     @Query(nativeQuery = true,
-            value = "select * from equipment " +
+            value = "select equipment.* from equipment " +
                     "join receipt_invoice_equipment_list on equipment.id = receipt_invoice_equipment_list.equipment_list_id " +
                     "left join expense_invoice_equipment_list on equipment.id = expense_invoice_equipment_list.equipment_list_id " +
                     "left join inventory_not_found_equipment on equipment.id = inventory_not_found_equipment.inventory_id " +

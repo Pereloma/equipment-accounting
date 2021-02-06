@@ -4,6 +4,7 @@ import lombok.Data;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 //приходная накладная
@@ -20,6 +21,11 @@ public class ReceiptInvoice {
 
     @ManyToOne
     private Organization provider;
+
+    @ManyToOne()
+    private User user;
+
+    private Date date;
 
     public ReceiptInvoice() {
         this.equipmentList = new ArrayList<Equipment>();
