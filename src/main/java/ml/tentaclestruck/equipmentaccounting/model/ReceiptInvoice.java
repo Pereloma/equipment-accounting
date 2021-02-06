@@ -29,5 +29,6 @@ public class ReceiptInvoice {
 
     public ReceiptInvoice() {
         this.equipmentList = new ArrayList<Equipment>();
+        this.date = new Date();
     }
 }

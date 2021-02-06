@@ -29,5 +29,6 @@ public class ExpenseInvoice {
 
     public ExpenseInvoice() {
         this.equipmentList = new ArrayList<>();
+        this.date = new Date();
     }
 }
