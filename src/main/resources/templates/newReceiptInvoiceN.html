@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Приходование товара</title>
+</head>
+<header>
+    <div th:replace="header"></div>
+    <script th:src="@{/receiptInvoice.js}"></script>
+</header>
+
+<body>
+<h2>Приходование товара</h2>
+<form method="POST" action="save" th:object="${receiptInvoice}">
+    <div>
+        <h4>Поставщик</h4>
+        <select th:field="*{provider}">
+            <option th:each="organization : ${organizations}" th:value="${organization.getId()}"
+                    th:text="${organization.toString()}"></option>
+        </select>
+    </div>
+
+    <div>
+        <h4>Оборудование</h4>
+        <table>
+            <tbody id="equipmentList">
+            <tr>
+                <td><h6>Название</h6></td>
+                <td><h6>Инвентаризационный номер</h6></td>
+                <td><h6>Серийный номер</h6></td>
+                <td><h6>Место размешения</h6></td>
+                <td><h6>Тип оборудования</h6></td>
+            </tr>
+            <tr th:each="equipment, itemStat : *{equipmentList}">
+                <td><input type="text" th:field="*{equipmentList[__${itemStat.index}__].name}"></td>
+                <td><input type="text" th:field="*{equipmentList[__${itemStat.index}__].inventoryNumber}"></td>
+                <td><input type="text" th:field="*{equipmentList[__${itemStat.index}__].serialNumber}"></td>
+                <td><select th:field="*{equipmentList[__${itemStat.index}__].storage}">
+                    <option th:each="storage : ${storages}" th:value="${storage.id}"
+                            th:text="${storage.toStringRu()}"></option>
+                </select></td>
+                <td><select th:field="*{equipmentList[__${itemStat.index}__].type}">
+                    <option th:each="equipmentType : ${equipmentTypes}" th:value="${equipmentType.name}"
+                            th:text="${equipmentType.toString()}"></option>
+                </select></td>
+                <td>
+                    <input type="button" onclick="removeElement(id)" class="removeEquipment"
+                           th:id="equipmentList+${itemStat.index}" value="убрать оборудование">
+                </td>
+            </tr>
+            </tbody>
+        </table>
+        <input type="button" id="addEquipment" onclick="addEquipmentFunction()" value="добавить оборудование">
+    </div>
+    <div>
+        <input type="submit" value="Submit order"/>
+
+        <input th:formmethod="GET" th:formaction="${'/ReceiptInvoice/print'}" type="submit" value="печать"/>
+    </div>
+</form>
+</body>
+</html>

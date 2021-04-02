@@ -11,18 +11,54 @@
 </header>
 
 <body>
-<h2>Учет оборудования</h2>
-    <div>
-        <h4>Тип оборудования</h4>
-        <table>
-            <tr th:each="equipment, itemStat : ${stockEquipment}">
-                <td>[[${equipment.getType()}]]</td>
-                <td><a th:href="${'/Equipment/'+equipment.getId()}"> [[${equipment.getName()}]]</a></td>
-                <td>[[${equipment.getInventoryNumber()}]]</td>
-                <td>[[${equipment.getSerialNumber()}]]</td>
-                <td>[[${equipment.getStorage()}]]</td>
-            </tr>
-        </table>
-    </div>
+<h3>Учет оборудования</h3>
+<div>
+    <table class="table">
+        <tr><td>
+            <!--
+                        <td><h5>Тип</h5></td>
+                        <td><h5>Наименование</h5></td>
+                        <td><h5>IN</h5></td>
+                        <td><h5>SN</h5></td>
+                        <td><h5>Место хранения</h5></td>-->
+            <div class="homeEquipmentType">
+                <h5>Тип</h5>
+            </div><div class="homeEquipmentName">
+            <h5>Наименование</h5>
+            </div><div class="homeEquipmentIN">
+            <h5>IN</h5>
+            </div><div class="homeEquipmentSN">
+            <h5>SN</h5>
+            </div><div class="homeEquipmentStorage">
+            <h5>Место хранения</h5>
+            </div>
+        </td></tr>
+        <tr th:each="equipment, itemStat : ${stockEquipment}">
+
+            <td><a th:href="${'/Equipment/'+equipment.getId()}">
+                <div class="homeEquipment">
+                <div class="homeEquipmentType">
+                    [[${equipment.getType()}]]
+                </div><div class="homeEquipmentName">
+                    [[${equipment.getName()}]]
+                </div><div class="homeEquipmentIN">
+                    [[${equipment.getInventoryNumber()}]]
+                </div><div class="homeEquipmentSN">
+                    [[${equipment.getSerialNumber()}]]
+                </div><div class="homeEquipmentStorage">
+                    [[${equipment.getStorage()}]]
+                </div>
+                </div>
+            </a></td>
+
+
+            <!--                <td>[[${equipment.getType()}]]</td>
+                            <td><a class="homeEquipment" th:href="${'/Equipment/'+equipment.getId()}"> [[${equipment.getName()}]]</a></td>
+                            <td>[[${equipment.getInventoryNumber()}]]</td>
+                            <td>[[${equipment.getSerialNumber()}]]</td>
+                            <td>[[${equipment.getStorage()}]]</td>-->
+        </tr>
+    </table>
+</div>
 </body>
 </html>

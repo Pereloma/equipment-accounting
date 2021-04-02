@@ -1,0 +1,23 @@
+.lPanel{
+    position: fixed;
+}
+.rPanel{
+    padding-left: 20%;
+    min-width: 50%;
+}
+.settingButton {
+    background-color: #f9f9ff;
+    border-radius: 0.5em;
+    padding: 0.5em;
+    font-size: 1em;
+    color: black;
+    margin: 0.2em;
+}
+.settingButton:hover{
+    color: #5a72ff;
+    background-color: white;
+    box-shadow: 0em 0em 0.5em #f3f3f3;
+}
+.settingButton{
+
+}

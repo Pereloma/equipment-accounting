@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>Приходование товара</title>
+</head>
+<header>
+    <div th:replace="header"></div>
+</header>
+
+<body>
+
+
+<table>
+    <tr>
+        <td>Приходная накладная</td>
+        <td>Создатель</td>
+    </tr>
+    <tr th:each="receiptInvoice , itemStat : ${receiptInvoiceList}">
+        <td><a th:href="${'/ReceiptInvoice/edit/'+receiptInvoice.getId()}">Приходная накладная от[[${receiptInvoice.getDate()}]]</a></td>
+        <td>[[${receiptInvoice?.getUser()}]]</td>
+    </tr>
+</table>
+
+
+</body>
+</html>

@@ -9,7 +9,7 @@
 <header>
     <div th:replace="header"></div>
 </header>
-<body>
+<body  th:fragment="equipmentType">
 <h2>Новый тип оборудования</h2>
 <form method="POST" action="/EquipmentType/put" th:object="${equipmentType}">
     <div>

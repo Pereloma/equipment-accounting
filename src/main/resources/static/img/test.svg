@@ -1,0 +1,21 @@
+<svg id="SVG" xmlns="http://www.w3.org/2000/svg" width="202.5" height="244" viewBox="0 0 202.5 244">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #545454;
+      }
+
+      .cls-2 {
+        fill: #fff;
+      }
+    </style>
+  </defs>
+  <g id="List2_копия" data-name="List2 копия">
+    <rect id="Прямоугольник_скругл._углы_1" data-name="Прямоугольник, скругл. углы 1" class="cls-1" y="39" width="155" height="205" rx="20" ry="20"/>
+    <rect id="Прямоугольник_скругл._углы_2" data-name="Прямоугольник, скругл. углы 2" class="cls-2" x="30" y="69" width="95" height="145" rx="10" ry="10"/>
+  </g>
+  <g id="List2">
+    <rect id="Прямоугольник_скругл._углы_1-2" data-name="Прямоугольник, скругл. углы 1" class="cls-1" x="47.5" width="155" height="205" rx="20" ry="20"/>
+    <rect id="Прямоугольник_скругл._углы_2-2" data-name="Прямоугольник, скругл. углы 2" class="cls-2" x="77.5" y="30" width="95" height="145" rx="10" ry="10"/>
+  </g>
+</svg>

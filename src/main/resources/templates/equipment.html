@@ -11,18 +11,23 @@
 </header>
 
 <body>
-<h2>[[${equipment.getType()}]] [[${equipment.getName()}]]</h2>
-<h3>SN:[[${equipment.getSerialNumber()}]] IN:[[${equipment.inventoryNumber}]]</h3>
+<h3>[[${equipment.getType()}]] [[${equipment.getName()}]]</h3>
+<h4>SN:[[${equipment.getSerialNumber()}]] IN:[[${equipment.inventoryNumber}]]</h4>
 <div>
-    <div>
-        <h4>прием оборудования</h4>
-        <a th:href="${'/ReceiptInvoice/edit/'+receiptInvoice.getId()}">прием оборудования от [[${receiptInvoice.getProvider()}]]</a>
+    <div class="divEl">
+        <h5>прием оборудования</h5>
+        <a th:href="${'/ReceiptInvoice/edit/'+receiptInvoice.getId()}"><div class="homeEquipment">
+            прием оборудования от [[${receiptInvoice.getProvider()}]]
+        </div></a>
     </div>
-    <div>
+
+    <div class="divEl">
         <h4>найден в инвентаризациях</h4>
         <table>
             <tr th:each="inventory, itemStat : ${inventoryList}">
-                <td >Инвентаризация от [[${inventory.getDate()}]] Cоздана: [[${inventory?.getUser()}]]</td>
+                <td><div class="homeEquipment">
+                    Инвентаризация от [[${inventory.getDate()}]] Cоздана: [[${inventory?.getUser()}]]
+                </div></td>
             </tr>
         </table>
     </div>

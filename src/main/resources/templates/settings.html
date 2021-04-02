@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ru"
+      xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" th:href="@{/setings.css}">
+    <title>Учет оборудования</title>
+</head>
+<header>
+    <div th:replace="header"></div>
+</header>
+
+<body>
+<h3>Настройки</h3>
+<div class="lPanel">
+    <div class="settingButton">
+        <a href="/Settings/equipmentType">Новый тип оборудования</a>
+    </div>
+    <div class="settingButton">
+        <a href="/Settings/floor">Новый этаж</a>
+    </div>
+    <div class="settingButton">
+        <a href="/Settings/storge">Новое место хранения</a>
+    </div>
+    <div class="settingButton">
+        <a href="/Settings/organization">Новая организация</a>
+    </div>
+</div>
+<th:block th:switch="${typeSettings}">
+    <div class="rPanel" th:case="floor" th:insert="~{newFloor::floor}"></div>
+    <div class="rPanel" th:case="storge" th:insert="~{newStorage::storge}"></div>
+    <div class="rPanel" th:case="organization" th:insert="~{newOrganization::organization}"></div>
+    <div class="rPanel" th:case="*" th:insert="~{newEquipmentType::equipmentType}"></div>
+</th:block>
+</body>
+</html>

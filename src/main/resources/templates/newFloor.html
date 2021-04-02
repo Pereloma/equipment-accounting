@@ -9,7 +9,7 @@
 <header>
     <div th:replace="header"></div>
 </header>
-<body>
+<body th:fragment="floor">
 <h2>Новый этаж</h2>
 <form method="POST" action="/Floor/put" th:object="${floor}">
     <div>

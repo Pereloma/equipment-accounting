@@ -9,7 +9,7 @@
 <header>
     <div th:replace="header"></div>
 </header>
-<body>
+<body th:fragment="storge">
 <h2>Новое место хранения</h2>
 <form method="POST" action="/Storage/put" th:object="${storage}">
     <div>
@@ -19,11 +19,11 @@
                     th:text="${floor.toString()}"></option>
         </select>
     </div>
+    <div>
         <h4>Кабинет</h4>
         <input type="text" th:field="*{cabinet}">
     </div>
     <div>
-
         <input type="submit" value="Создать"/>
     </div>
 </form>

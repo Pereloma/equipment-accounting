@@ -6,7 +6,7 @@
     <meta charset="utf-8">
     <title>Новая организация</title>
 </head>
-<body>
+<body th:fragment="organization">
 <h2>Новая организация</h2>
 <form method="POST" action="/Organization/put" th:object="${organization}">
     <div>

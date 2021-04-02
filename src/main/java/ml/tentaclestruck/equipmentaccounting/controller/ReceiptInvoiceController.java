@@ -16,7 +16,6 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
-import javax.validation.ConstraintViolationException;
 import javax.validation.Valid;
 import java.awt.image.BufferedImage;
 
@@ -35,6 +34,43 @@ public class ReceiptInvoiceController {
     EquipmentTypeRepository equipmentTypeRepository;
     @Autowired
     QRCodeWriter barcodeWriter;
+
+    @GetMapping()
+    public String all(Model model){
+        model.addAttribute("receiptInvoiceList",receiptInvoiceRepository.findAll());
+
+
+
+        return "receiptInvoice";
+    }
+
+    @GetMapping("/newN")
+    public String newReceiptInvoiceN(Model model){
+        ReceiptInvoice receiptInvoice = new ReceiptInvoice();
+        receiptInvoice.getEquipmentList().add(new Equipment());
+
+        model.addAttribute("receiptInvoice",receiptInvoice);
+        model.addAttribute("organizations",organizationRepository.findAll());
+        model.addAttribute("storages",storageRepository.findAll());
+        model.addAttribute("equipmentTypes",equipmentTypeRepository.findAll());
+        return "newReceiptInvoiceN";
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @GetMapping("/new")
     public String newReceiptInvoice(Model model){

@@ -1,0 +1,101 @@
+body{
+    font-family: "Bookman Old Style";
+}
+h1{
+    position: sticky;
+    font-size: 2em;
+    color: black;
+    margin: 0.5em 0em;
+    margin-inline-start: -1em;
+    font-weight: normal;
+}
+h3{
+    font-size: 1.66em;
+    color: black;
+    margin: 1em 0.5em 0.5em;
+    font-weight: normal;
+}
+h4{
+    font-size: 1.495em;
+    color: black;
+    margin: 0em 00em 1em;
+    font-weight: normal;
+}
+h5{
+    font-size: 1.33em;
+    color: black;
+    margin: 0.1em 0em;
+    font-weight: normal;
+}
+
+.container{
+    width: 100%;
+    max-width: 80em;
+    margin: 0 auto;
+}
+
+a.mainRef{
+    color: #545454;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 1em 1.8em;
+    background: url("img/test.svg") 0 50% no-repeat ;
+    background-size: 1.2em;
+}
+a.mainRef:hover{
+    color: #5a72ff;
+}
+
+div.setting{
+    float: right;
+}
+a.settingRef{
+    color: #545454;
+    font-size: 1em;
+    font-weight: normal;
+    padding: 1em 1.8em;
+    background: url("img/test2.svg") 0 50% no-repeat ;
+    background-size: 1.2em;
+}
+a.settingRef:hover{
+    color: #5a72ff;
+}
+
+.table{
+    width: 100%;
+}
+.homeEquipmentType{
+    display: inline-block;
+    width: 13%;
+}
+.homeEquipmentName{
+    display: inline-block;
+    width: 30%;
+}
+.homeEquipmentSN{
+    display: inline-block;
+    width: 13%;
+}
+.homeEquipmentIN{
+    display: inline-block;
+    width: 13%;
+}
+.homeEquipmentStorage{
+    display: inline-block;
+    width: 30%;
+}
+.homeEquipment{
+    background-color: #f9f9ff;
+    border-radius: 0.5em;
+    padding: 0.1em;
+    font-size: 1em;
+    color: black;
+}
+.homeEquipment:hover{
+    color: #5a72ff;
+    background-color: white;
+    box-shadow: 0em 0em 0.5em #f3f3f3;
+}
+.divEl{
+    margin-bottom: 1em;
+}

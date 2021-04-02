@@ -4,26 +4,21 @@
       xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="utf-8">
+    <link rel="stylesheet" th:href="@{/style.css}">
 </head>
-<body>
+<body class="container">
 <div>
-    <H1>Учет оборудования</H1>
+    <H1><b>Учет </b>оборудования</H1>
 </div>
 
-<div>
-    <a href="/">Home</a>
-    <a href="/Inventory">Новая инвентаризация</a>
-    <a href="/ReceiptInvoice/new">Прием Оборудования</a>
-    <a href="/ExpenseInvoice/new">Списание оборудования</a>
-    <hr/>
-</div>
-
-<div>
-    <a href="/Floor/new">Новый этаж</a>
-    <a href="/Storage/new">Новое место хранения</a>
-    <a href="/EquipmentType/new">Новый тип оборудования</a>
-    <a href="/"></a>
-    <hr/>
+<div class="mainOne">
+    <a class="mainRef" href="/">Home</a>
+    <a class="mainRef" href="/Inventory">Новая инвентаризация</a>
+    <a class="mainRef" href="/ReceiptInvoice/new">Прием Оборудования</a>
+    <a class="mainRef" href="/ExpenseInvoice/new">Списание оборудования</a>
+    <div class="setting">
+        <a class="settingRef" href="/Settings/equipmentType"></a>
+    </div>
 </div>
 
 </body>
